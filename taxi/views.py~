@@ -1,0 +1,17 @@
+from django.shortcuts import render
+from .models import Taxi
+
+
+def taxi_page_view(request):
+    if request.method == "POST":
+        taxi_name = request.POST.get('taxi_name')
+        license = request.POST.get('license')
+        driver = request.POST.get('driver')
+        capacity = request.POST.get('capacity')
+        model = request.POST.get('model')
+        status = request.POST.get('status')
+        Taxi.objects.create(taxi_name=taxi_name, license=license, driver=driver, capacity=capacity, model=model,
+                            status=status)
+    taxi = Taxi.objects.all()
+    context = {'taxi': taxi}
+    return render(request, 'taxi/taxi.html', context)

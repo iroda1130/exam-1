@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meal Management</title>
+</head>
+<body>
+<h1>Meal Management</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    <label for="meal-name">Meal Name:</label><br>
+    <input type="text" id="meal-name" name="name" required><br><br>
+
+    <label for="ingredients">Ingredients:</label><br>
+    <textarea id="ingredients" name="ingredients" rows="4" required></textarea><br><br>
+
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" step="0.01" required><br><br>
+
+    <label for="type">Type:</label><br>
+    <select id="type" name="type" required>
+        <option value="Appetizer">Appetizer</option>
+        <option value="Main Course">Main Course</option>
+        <option value="Dessert">Dessert</option>
+    </select><br><br>
+
+    <label for="cuisine">Cuisine:</label><br>
+    <input type="text" id="cuisine" name="cuisine" required><br><br>
+
+    <button type="submit">Create Meal</button>
+</form>
+
+<h2>Meal List</h2>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Cuisine</th>
+    </tr>
+    {% for meal in meals %}
+    <tr>
+        <td>{{ meal.name }}</td>
+        <td>{{ meal.ingredients }}</td>
+        <td>${{ meal.price }}</td>
+        <td>{{ meal.type }}</td>
+        <td>{{ meal.cuisine }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

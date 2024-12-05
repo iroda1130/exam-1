@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meals</title>
+</head>
+<body>
+<p>Create New Meal</p>
+<form method="post">
+    {% csrf_token %}
+    <label for="Meal Name">Meal Name: <input type="text" name="name"></label><br>
+    <label for="Ingredients">Ingredients: <input type="text" name="ingredients"></label><br>
+    <label for="Price">Price: <input type="number" name="price"></label><br>
+    <label for="Type">Type: <input type="text" name="type"></label><br>
+    <label for="Cuisine">Cuisine: <input type="text" name="cuisine"></label><br>
+    <button type="submit">Create</button><br>
+</form>
+
+<h2>Meal Management</h2>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Cuisine</th>
+    </tr>
+    {% for meal in meals %}
+    <tr>
+        <td>{{ meal.name }}</td>
+        <td>{{ meal.ingredients }}</td>
+        <td>${{ meal.price }}</td>
+        <td>{{ meal.type }}</td>
+        <td>{{ meal.cuisine }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
